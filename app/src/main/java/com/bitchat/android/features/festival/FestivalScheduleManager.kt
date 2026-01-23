@@ -79,7 +79,7 @@ class FestivalScheduleManager(application: Application) : AndroidViewModel(appli
      * Festival timezone identifier
      */
     val timezone: String
-        get() = _festivalData.value?.festival?.timezoneIdentifier ?: "America/Los_Angeles"
+        get() = _festivalData.value?.festival?.timezone ?: "America/Los_Angeles"
     
     /**
      * All unique days from the schedule, sorted
@@ -150,6 +150,9 @@ class FestivalScheduleManager(application: Application) : AndroidViewModel(appli
             ?: emptyList()
     }
     
+    
+    /** Convenience alias for setsForDay */
+    fun sets(day: String): List<ScheduledSet> = setsForDay(day)
     /**
      * Get sets for a specific day and stage
      * 
@@ -209,6 +212,9 @@ class FestivalScheduleManager(application: Application) : AndroidViewModel(appli
         return _festivalData.value?.stages?.find { it.id == stageId }
     }
     
+    
+    /** Convenience alias for stageById */
+    fun stage(stageId: String): Stage? = stageById(stageId)
     /**
      * Get the nearest stage to a location
      * 
@@ -272,3 +278,5 @@ class FestivalScheduleManager(application: Application) : AndroidViewModel(appli
         }
     }
 }
+
+
